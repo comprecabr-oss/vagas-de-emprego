@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vagas Home Office que Pagam em Dólar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981 0%, #0891b2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .alert-banner {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .currency-card {
+            transition: transform 0.2s;
+        }
+        
+        .currency-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Alert Banner -->
+    <div class="alert-banner py-3 px-4 text-center sticky top-0 z-50">
+        <p class="text-sm font-medium text-gray-800">
+            ⚠️ Atenção: Nenhuma vaga exige presença física. Todas as oportunidades são 100% Home Office e as entrevistas acontecem somente online.
+        </p>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="py-12 md:py-20 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                Trabalhe de Casa com Vagas<br>
+                <span class="gradient-text">Home Office que Pagam em Dólar</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                Envie seu currículo e descubra quais empresas internacionais estão contratando brasileiros para trabalhar remotamente. Sem exigência de inglês fluente.
+            </p>
+            <button onclick="openRegistrationModal()" class="bg-gradient-to-r from-emerald-500 to-cyan-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg transition-all">
+                Quero Me Candidatar
+            </button>
+            <p class="text-sm text-gray-500 mt-4">
+                ✓ Vagas 100% online • ✓ Pagamento em moeda estrangeira • ✓ Sem taxas de inscrição
+            </p>
+        </div>
+    </section>
+
+    <!-- Currency Cards -->
+    <section class="py-8 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-center text-sm font-semibold text-gray-500 mb-4">COTAÇÃO DO DIA</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="currency-card bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 rounded-lg border border-emerald-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600">🇺🇸 Dólar (USD)</p>
+                            <p class="text-2xl font-bold text-emerald-700">R$ 5,42</p>
+                        </div>
+                        <span class="text-3xl">💵</span>
+                    </div>
+                </div>
+                <div class="currency-card bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600">🇪🇺 Euro (EUR)</p>
+                            <p class="text-2xl font-bold text-blue-700">R$ 5,78</p>
+                        </div>
+                        <span class="text-3xl">💶</span>
+                    </div>
+                </div>
+                <div class="currency-card bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border border-purple-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600">🇬🇧 Libra (GBP)</p>
+                            <p class="text-2xl font-bold text-purple-700">R$ 6,62</p>
+                        </div>
+                        <span class="text-3xl">💷</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Hire Brazilians -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                Por que empresas estrangeiras contratam brasileiros?
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <div class="text-4xl mb-4">💰</div>
+                    <h3 class="text-xl font-semibold mb-2">Custo Competitivo</h3>
+                    <p class="text-gray-600">Empresas reduzem custos operacionais contratando profissionais qualificados no Brasil.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h3 class="text-xl font-semibold mb-2">Alta Produtividade</h3>
+                    <p class="text-gray-600">Brasileiros têm reputação de comprometimento e flexibilidade no trabalho remoto.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <div class="text-4xl mb-4">🌍</div>
+                    <h3 class="text-xl font-semibold mb-2">Fusos Compatíveis</h3>
+                    <p class="text-gray-600">Horários ideais para empresas da América do Norte e Europa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Como funciona</h2>
+            <div class="space-y-6">
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-700 font-bold">1</div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-1">Cadastre-se gratuitamente</h3>
+                        <p class="text-gray-600">Crie sua conta em menos de 1 minuto com nome, email e senha.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-700 font-bold">2</div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-1">Responda perguntas sobre seu perfil</h3>
+                        <p class="text-gray-600">Questionário rápido para entendermos sua experiência e preferências.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-700 font-bold">3</div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-1">Receba vagas compatíveis</h3>
+                        <p class="text-gray-600">Veja oportunidades selecionadas especialmente para o seu perfil.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-700 font-bold">4</div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-1">Candidate-se diretamente</h3>
+                        <p class="text-gray-600">Acesso direto às plataformas internacionais de recrutamento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Pessoas que já conseguiram</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <p class="text-gray-700 mb-4">"Consegui entrevista em menos de 72 horas após me cadastrar!"</p>
+                    <p class="text-sm text-gray-500">— Maria S., São Paulo</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <p class="text-gray-700 mb-4">"Apliquei em 5 empresas no primeiro dia. Processo muito fácil."</p>
+                    <p class="text-sm text-gray-500">— João P., Rio de Janeiro</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <p class="text-gray-700 mb-4">"Recebi retorno de uma empresa americana em 3 dias!"</p>
+                    <p class="text-sm text-gray-500">— Ana L., Belo Horizonte</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Middle -->
+    <section class="py-12 px-4 bg-gradient-to-r from-emerald-500 to-cyan-600">
+        <div class="max-w-4xl mx-auto text-center text-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Pronto para começar?</h2>
+            <p class="text-lg mb-6 opacity-90">Cadastre-se agora e veja quais empresas estão contratando para o seu perfil.</p>
+            <button onclick="openRegistrationModal()" class="bg-white text-emerald-600 px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg transition-all">
+                Quero Me Candidatar
+            </button>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Perguntas Frequentes</h2>
+            <div class="space-y-4">
+                <details class="bg-gray-50 p-4 rounded-lg">
+                    <summary class="font-semibold cursor-pointer">É seguro?</summary>
+                    <p class="mt-2 text-gray-600">Sim. Trabalhamos apenas com plataformas verificadas e empresas legítimas.</p>
+                </details>
+                <details class="bg-gray-50 p-4 rounded-lg">
+                    <summary class="font-semibold cursor-pointer">Preciso falar inglês fluente?</summary>
+                    <p class="mt-2 text-gray-600">Não. Existem vagas para todos os níveis de idioma, incluindo iniciante.</p>
+                </details>
+                <details class="bg-gray-50 p-4 rounded-lg">
+                    <summary class="font-semibold cursor-pointer">Quando recebo acesso às vagas?</summary>
+                    <p class="mt-2 text-gray-600">Imediatamente após completar seu cadastro e perfil.</p>
+                </details>
+                <details class="bg-gray-50 p-4 rounded-lg">
+                    <summary class="font-semibold cursor-pointer">As vagas são atualizadas?</summary>
+                    <p class="mt-2 text-gray-600">Sim. Novas oportunidades são adicionadas diariamente.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Não perca mais tempo</h2>
+            <p class="text-lg text-gray-600 mb-8">Milhares de brasileiros já trabalham de casa ganhando em dólar. Você pode ser o próximo.</p>
+            <button onclick="openRegistrationModal()" class="bg-gradient-to-r from-emerald-500 to-cyan-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg transition-all">
+                Quero Me Candidatar
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-400">© 2025 Vagas Home Office. Todos os direitos reservados.</p>
+            <p class="text-sm text-gray-500 mt-2">Plataforma de conexão com oportunidades internacionais de trabalho remoto.</p>
+        </div>
+    </footer>
+
+    <!-- Registration Modal -->
+    <div id="registrationModal" class="modal">
+        <div class="modal-content fade-in">
+            <h2 class="text-2xl font-bold mb-4">Criar Conta Gratuita</h2>
+            <p class="text-gray-600 mb-6">Preencha seus dados para acessar as vagas disponíveis</p>
+            <form id="registrationForm" onsubmit="handleRegistration(event)">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Nome Completo</label>
+                    <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Email</label>
+                    <input type="email" id="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-2">Senha</label>
+                    <input type="password" id="password" required minlength="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-emerald-500 to-cyan-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                    Criar Conta
+                </button>
+            </form>
+            <button onclick="closeRegistrationModal()" class="mt-4 text-gray-500 text-sm hover:text-gray-700">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Welcome Modal -->
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content fade-in">
+            <div class="text-center mb-6">
+                <div class="text-5xl mb-4">🎉</div>
+                <h2 class="text-2xl font-bold mb-2">Bem-vindo(a), <span id="userName"></span>!</h2>
+                <p class="text-gray-600">Sua conta foi criada com sucesso</p>
+            </div>
+            <div class="space-y-4 mb-6">
+                <div class="flex gap-3">
+                    <div class="text-2xl">✓</div>
+                    <div>
+                        <h3 class="font-semibold">Empresas Verificadas</h3>
+                        <p class="text-sm text-gray-600">Acesso a plataformas internacionais confiáveis</p>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <div class="text-2xl">💵</div>
+                    <div>
+                        <h3 class="font-semibold">Pagamento em Moeda Estrangeira</h3>
+                        <p class="text-sm text-gray-600">Vagas que pagam em dólar, euro e libra</p>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <div class="text-2xl">🔄</div>
+                    <div>
+                        <h3 class="font-semibold">Vagas Atualizadas Diariamente</h3>
+                        <p class="text-sm text-gray-600">Novas oportunidades todos os dias</p>
+                    </div>
+                </div>
+            </div>
+            <button onclick="redirectToQuiz()" class="w-full bg-gradient-to-r from-emerald-500 to-cyan-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                Continuar para o Questionário
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function openRegistrationModal() {
+            document.getElementById('registrationModal').classList.add('active');
+        }
+
+        function closeRegistrationModal() {
+            document.getElementById('registrationModal').classList.remove('active');
+        }
+
+        function handleRegistration(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Salvar dados (você pode enviar para seu backend aqui)
+            localStorage.setItem('userName', name);
+            localStorage.setItem('userEmail', email);
+
+            // Fechar modal de registro
+            closeRegistrationModal();
+
+            // Abrir modal de boas-vindas
+            document.getElementById('userName').textContent = name.split(' ')[0];
+            document.getElementById('welcomeModal').classList.add('active');
+        }
+
+        function redirectToQuiz() {
+            // SUBSTITUA ESTA URL PELA URL DO SEU QUIZ/CHECKOUT
+            window.location.href = 'https://seu-checkout.com/quiz';
+        }
+
+        // Fechar modal ao clicar fora
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
